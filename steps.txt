@@ -1,0 +1,83 @@
+**TO START THE PROJECT RUN "npm run dev" THIS COMMAND INSIDE GOING "backend" DIRECTORY** 4:18:00
+
+1. Setup Node, Express App with TypeScript
+2. Integrate MongoDB Database Connection
+3. Register / Login on OpenAI Portal, Get API Keys
+4. Build A Secure Authentication With Tokens and HTTP-only signed cookies
+
+setup models
+user => name, email, password, chats:Chat[]
+
+5. when user signup we need to validate username, email length and everything that user provide for safety of databse => to do that thing we will implement middleware into our project for data-validation
+{
+    middleware concept: {
+    }
+
+    implementation: {
+        1. user will request with data to backend
+        2. inside backend first middleware is there and it's gonna verify that data is correct or not
+            if correct
+            then request will go to the final middleware for storing data or fetching data
+            else
+            do request will be rejected and that message will go to client side
+    }
+
+    Using: {
+        we've used express-validator middleware inside the project at utils/validator.ts
+    }
+
+    Reference: {
+        go to express-validator page 👉 https://express-validator.github.io/docs
+    }
+}
+
+6. Authentication -> Autherization -> Cookies {
+    Step1 : {
+        It's a step in which user needs to verify their identity. For this application, the user needs to provide the Email and password to identify themselves and it is done in registeration process. The user will be provided a TOKEN after Auth Process.
+    }
+
+    Step2 (Authorization) : {
+        Once the user Authenticates, he is provided a token. Now to access a resources, the user needs to show a token that was sent during Authentication. This ensures that the user entitled to a resource.
+    }
+
+    Step3 (JWT) : {
+        JSON WEB TOKEN is used to encrypt a payload into a signed token that has the permission or authorities of the user.
+
+        Q: How are we gonna send token to a user?
+        A: using HTTP Only Cookies.
+    }
+
+    Step4 (HTTP Only Cookies) : {
+        It's a type of cookie that comes with a special security attribute that restricts cookies from being accessed by javascript in the web-browser. This prevent XSS attacks.
+    }
+
+    Step5 (Implementation) :{
+        1. Create token : {
+            Utils/token-manager.ts we created simple code to create token and export it for use
+        }
+        2. Import token inside login : {
+            controllers/user-controllers.ts : we make instance of token and use user id and email to make actual token for user and provide id, email and expiry days into parameters
+        }
+        3. provide token as cookie : {
+            1. we can use cookie-parser package to deliver cookie from backend to frontend
+            2. It's a middleware so we need to use inside app.ts like => app.use(cookieParser)
+        }
+    }
+}
+
+7. building frontend with vite + react : {
+    1. setup vite : {
+        npm create vite@latest
+    }
+    2. axios 3:05:00 : {
+        for api call from frontend to backend
+        1 : {
+            main.tsx {
+                write the baseURL and write credentials
+            }
+        }
+        2 : {   
+            helper folder > api-communicator.ts > code it
+        }
+    }
+}
