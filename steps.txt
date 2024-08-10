@@ -1,5 +1,3 @@
-**TO START THE PROJECT RUN "npm run dev" THIS COMMAND INSIDE GOING "backend" DIRECTORY** 4:18:00
-
 1. Setup Node, Express App with TypeScript
 2. Integrate MongoDB Database Connection
 3. Register / Login on OpenAI Portal, Get API Keys
